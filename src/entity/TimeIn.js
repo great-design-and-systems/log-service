@@ -1,0 +1,19 @@
+var mongoose = require('mongoose');
+
+var TimeInSchema = new mongoose.Schema({
+    fullname: {
+        type: String,
+        required: [true, 'Name is required.']
+    },
+    personType: {
+        type: String,
+        required: [true, 'Person Type is required.']
+    },
+    purpose: {
+        type: String,
+        default: 'Research'
+    },
+    createdOn: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('timein', TimeInSchema);

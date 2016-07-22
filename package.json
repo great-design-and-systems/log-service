@@ -1,0 +1,37 @@
+{
+  "name": "time-service",
+  "version": "1.0.0",
+  "description": "Time Microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp jshint test watch"
+  },
+  "keywords": [
+    "time-service"
+  ],
+  "author": "Analyn Flores",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp-nodemon": "^2.1.0",
+    "log4js": "^0.6.38",
+    "mongoose": "^4.5.5",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chakram": "^1.4.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-express": "^0.3.5",
+    "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^2.2.0",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "mocha": "^2.5.3",
+    "run-sequence": "^1.2.2",
+    "should": "^9.0.2",
+    "sinon": "^1.17.4"
+  }
+}
