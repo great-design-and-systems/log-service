@@ -4,7 +4,9 @@
   "description": "Time Microservice",
   "main": "index.js",
   "scripts": {
-    "test": "gulp jshint test watch"
+    "test": "gulp jshint test watch",
+    "start": "gulp start",
+    "gulp": "node_modules/.bin/gulp"
   },
   "keywords": [
     "time-service"

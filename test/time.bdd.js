@@ -4,10 +4,12 @@ var Database = require('./config/database');
 var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
+var CONNECT_TEST_TIMEOUT = process.env.CONNECT_TEST_TIMEOUT || 50000;
 describe('Time Service BDD', function () {
     var db = new Database();
 
     beforeEach(function (done) {
+        this.timeout(CONNECT_TEST_TIMEOUT);
         return db.connect(done);
     });
 
@@ -28,7 +30,7 @@ describe('Time Service BDD', function () {
         describe('WHEN: saving time-in', function () {
             var expectedResult;
             beforeEach(function (done) {
-                Time.checkIn(data, function(err, result) {
+                Time.checkIn(data, function (err, result) {
                     expectedResult = result;
                     done();
                 });
@@ -52,7 +54,7 @@ describe('Time Service BDD', function () {
         describe('WHEN: getting time-ins', function () {
             var expectedResult;
             beforeEach(function (done) {
-                Time.getTimeInRecords(data, function(err, result) {
+                Time.getTimeInRecords(data, function (err, result) {
                     expectedResult = result;
                     done();
                 });
