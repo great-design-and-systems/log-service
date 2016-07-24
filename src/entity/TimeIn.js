@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var TimeInSchema = new mongoose.Schema({
+    personId: {
+        type: String,
+        required: [true, 'PersonId is required.']
+    },
     fullname: {
         type: String,
         required: [true, 'Name is required.']

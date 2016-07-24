@@ -18,6 +18,7 @@ describe('Time Service BDD', function () {
         var personType = 'Visitor';
         var fullname = 'Analyn Flores';
         var purpose = 'Research';
+        var personId = '123456789';
         var data = {};
 
         beforeEach(function () {
@@ -25,6 +26,7 @@ describe('Time Service BDD', function () {
             data.personType = personType;
             data.fullname = fullname;
             data.purpose = purpose;
+            data.personId = personId;
         });
 
         describe('WHEN: saving time-in', function () {
