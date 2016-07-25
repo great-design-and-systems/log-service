@@ -32,6 +32,7 @@ module.exports = function () {
         var url = 'mongodb://';
         if (USER && PASSWORD) {
             url += USER;
+            url += ':';
             url += PASSWORD;
             url += '@';
         }
