@@ -42,7 +42,7 @@ module.exports = function(app) {
     });
 
     app.put(API + 'check-in-purpose/:timeInID', function(req, res) {
-        Time.checkInPurpose(req.params.timeInID, req.body.purpose, function(err, result) {
+        Time.checkInPurpose(req.params.timeInID, req.body.purpose, function(err) {
             if (err) {
                 res.status(500).send(err);
             } else {
