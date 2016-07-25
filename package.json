@@ -19,9 +19,7 @@
     "gulp-nodemon": "^2.1.0",
     "log4js": "^0.6.38",
     "mongoose": "^4.5.5",
-    "morgan": "^1.7.0"
-  },
-  "devDependencies": {
+    "morgan": "^1.7.0",
     "chai": "^3.5.0",
     "chakram": "^1.4.0",
     "gulp": "^3.9.1",
