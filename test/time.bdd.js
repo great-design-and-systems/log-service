@@ -31,6 +31,7 @@ describe('Time Service BDD', function () {
             data.personId = personId;
             data.department = department;
             data.studentLevel = studentLevel;
+            data.when = 123131242425;
         });
 
         describe('WHEN: saving time-in', function () {
