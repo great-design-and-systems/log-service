@@ -45,6 +45,24 @@ describe('Time Service BDD', function () {
             it('THEN: return is true', function () {
                 expect(!!expectedResult).to.equal(true);
             });
+
+            describe('WHEN: updating purpose', function() {
+                var updateResult;
+                var updateErr;
+                var newPurpose = 'sleep';
+                beforeEach(function (done) {
+                    Time.checkInPurpose(expectedResult._id, newPurpose, function (err, result) {
+                        updateErr = err;
+                        updateResult = result;
+                        done();
+                    });
+                });
+
+                it('THEN: return is true', function () {
+                    expect(updateErr).to.be.null;
+                    expect(!!updateResult).to.equal(true);
+                }); 
+            });
         });
     });
     describe('GIVEN: time-in records are retrieved', function () {

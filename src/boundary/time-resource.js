@@ -8,7 +8,8 @@ module.exports = function(app) {
             domain: process.env.DOMAIN_NAME || 'Time',
             links: {
                 checkIn: 'http://' + req.headers.host + API + 'check-in',
-                getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in'
+                getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in',
+                checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/:timeInID'
             }
         });
     });
@@ -35,6 +36,18 @@ module.exports = function(app) {
                 res.status(200).send({
                     message: 'ok',
                     result: result._id
+                });
+            }
+        });
+    });
+
+    app.put(API + 'check-in-purpose/:timeInID', function(req, res) {
+        Time.checkInPurpose(req.params.timeInID, req.body.purpose, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).send({
+                    message: 'ok'
                 });
             }
         });
