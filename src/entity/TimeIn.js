@@ -17,6 +17,8 @@ var TimeInSchema = new mongoose.Schema({
         type: String,
         default: 'Research'
     },
+    department: String,
+    studentLevel: String,
     createdOn: { type: Date, default: Date.now }
 });
 
