@@ -64,6 +64,24 @@ describe('Time Service BDD', function () {
                     expect(!!updateResult).to.equal(true);
                 }); 
             });
+
+            describe('WHEN: getting time info', function() {
+                var updateResult;
+                var updateErr;
+                beforeEach(function (done) {
+                    Time.getTimeInfo(expectedResult._id, function (err, result) {
+                        updateErr = err;
+                        updateResult = result;
+                        done();
+                    });
+                });
+
+                it('THEN: time in record is retrieved', function () {
+                    console.log(updateResult);
+                    expect(updateErr).to.be.null;
+                    expect(!!updateResult).to.equal(true);
+                });            
+            });
         });
     });
     describe('GIVEN: time-in records are retrieved', function () {

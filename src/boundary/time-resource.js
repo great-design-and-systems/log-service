@@ -9,7 +9,8 @@ module.exports = function(app) {
             links: {
                 checkIn: 'http://' + req.headers.host + API + 'check-in',
                 getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in',
-                checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/:timeInID'
+                checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/{timeInID}',
+                getTimeInfo: 'http://' + req.headers.host + API + 'get-time-info/{timeInID}'
             }
         });
     });
@@ -49,6 +50,16 @@ module.exports = function(app) {
                 res.status(200).send({
                     message: 'ok'
                 });
+            }
+        });
+    });
+
+    app.get(API + 'get-time-info/:timeInID', function(req, res) {
+        Time.getTimeInfo(req.params.timeInID, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).send(result);
             }
         });
     });
