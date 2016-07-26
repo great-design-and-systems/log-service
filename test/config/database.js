@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 module.exports = function (done) {
     var PORT = process.env.DB_PORT_TEST || 27017;
-    var HOST = process.env.DB_HOST || 'localhost';
+    var HOST = process.env.DB_HOST_TEST || 'localhost';
     var TEST_DB = process.env.DB_TEST || 'timein_sample';
     var USER = process.env.DB_USER;
     var PASSWORD = process.env.DB_PASSWORD;
