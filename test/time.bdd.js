@@ -14,7 +14,6 @@ describe('Time Service BDD', function () {
     });
 
     describe('GIVEN: the person checks in', function () {
-        var currentTime = '2016-07-23 01:07';
         var personType = 'Visitor';
         var fullname = 'Analyn Flores';
         var purpose = 'Research';
@@ -22,9 +21,9 @@ describe('Time Service BDD', function () {
         var department = 'College of Science';
         var studentLevel = '1st Year';
         var data = {};
+        var visitorData = {};
 
         beforeEach(function () {
-            data.currentTime = currentTime;
             data.personType = personType;
             data.fullname = fullname;
             data.purpose = purpose;
@@ -32,6 +31,9 @@ describe('Time Service BDD', function () {
             data.department = department;
             data.studentLevel = studentLevel;
             data.when = 123131242425;
+            visitorData.fullname = fullname;
+            visitorData.purpose = purpose;
+            visitorData.when = data.when;
         });
 
         describe('WHEN: saving time-in', function () {
@@ -81,6 +83,21 @@ describe('Time Service BDD', function () {
                     expect(updateErr).to.be.null;
                     expect(!!updateResult).to.equal(true);
                 });            
+            });
+        });
+
+        describe('WHEN: visitor checks in', function() {
+            var expectedResult;
+            beforeEach(function (done) {
+                Time.checkInVisitor(visitorData, function (err, result) {
+                    expectedResult = result;
+                    done();
+                });
+            });
+
+            it('THEN: return is true', function () {
+                console.log(expectedResult);
+                expect(!!expectedResult).to.equal(true);
             });
         });
     });

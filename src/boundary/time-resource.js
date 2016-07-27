@@ -10,7 +10,8 @@ module.exports = function(app) {
                 checkIn: 'http://' + req.headers.host + API + 'check-in',
                 getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in',
                 checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/{timeInID}',
-                getTimeInfo: 'http://' + req.headers.host + API + 'get-time-info/{timeInID}'
+                getTimeInfo: 'http://' + req.headers.host + API + 'get-time-info/{timeInID}',
+                checkInVisitor: 'http://' + req.headers.host + API + 'check-in-visitor/'
             }
         });
     });
@@ -27,7 +28,6 @@ module.exports = function(app) {
             }
         });
     });
-
 
     app.post(API + 'check-in', function(req, res) {
         Time.checkIn(req.body, function(err, result) {
@@ -60,6 +60,19 @@ module.exports = function(app) {
                 res.status(500).send(err);
             } else {
                 res.status(200).send(result);
+            }
+        });
+    });
+
+    app.post(API + 'check-in-visitor', function(req, res) {
+        Time.checkInVisitor(req.body, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).send({
+                    message: 'ok',
+                    result: result._id
+                });
             }
         });
     });

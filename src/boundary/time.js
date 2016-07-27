@@ -15,5 +15,10 @@ module.exports = {
     },
     getTimeInfo: function (timeInID, callback) {
         new TimeInfo(timeInID, callback);
-    } 
+    },
+    checkInVisitor: function (data, callback) {
+        data.personId = 0;
+        data.personType = 'Visitor';
+        new CheckIn(data, callback);
+    }
 };
