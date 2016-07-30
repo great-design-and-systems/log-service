@@ -68,7 +68,7 @@ module.exports = function (app) {
     app.get(API + 'get-today-records/:currentTimeMilis', function (req, res) {
         Time.getTodayRecords(req.params.currentTimeMilis, function (err, result) {
             if (err) {
-                res.status(500).send(err);
+                res.status(200).send([]);
             } else {
                 res.status(200).send(result);
             }
