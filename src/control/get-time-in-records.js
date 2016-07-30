@@ -3,9 +3,9 @@ var TimeIn = require('../entity/TimeIn');
 
 function execute(param, callback) {
     TimeIn.find({
-        createdOn: {
-            $gte: param.dateFrom,
-            $lte: param.dateTo
+        when: {
+            $gte: new Date(param.dateFrom).getTime(),
+            $lte: new Date(param.dateTo).getTime()
         }
     }, callback);
 }
