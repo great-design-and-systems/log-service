@@ -123,7 +123,6 @@ describe('Time Service BDD', function () {
             });
 
             it('THEN: return is true', function () {
-                console.log(expectedResult);
                 expect(!!expectedResult).to.equal(true);
             });
         });
