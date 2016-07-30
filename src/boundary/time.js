@@ -24,10 +24,12 @@ module.exports = {
         new CheckIn(data, callback);
     },
     getTodayRecords: function (todayLongValue, callback) {
+        console.log('todayLongValue', todayLongValue);
         new GetTodayRange(todayLongValue, function (err, range) {
             if (err) {
                 callback({ message: 'Failed to get today range.' });
             } else {
+                console.log('range', range);
                 new GetTodayRecords(range.start, range.end, function (errTimeIn, records) {
                     if (errTimeIn) {
                         callback({

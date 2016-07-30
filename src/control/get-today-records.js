@@ -8,6 +8,7 @@ function execute(start, end, callback) {
             $lt: end
         }
     }, function (err, result) {
+        console.error(err);
         if (err) {
             callback({
                 message: 'Failed to get today records'
