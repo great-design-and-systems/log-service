@@ -51,7 +51,6 @@ module.exports = function (done) {
         for (let i in mongoose.connection.collections) {
             if (mongoose.connection.collections[i] && mongoose.connection.collections[i].drop) {
                 mongoose.connection.collections[i].drop(function (err) {
-                    console.log('collection dropped');
                 });
             }
         }

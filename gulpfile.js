@@ -19,11 +19,10 @@ gulp.task('default', function () {
 gulp.task('test', function () {
     return gulp.src(TEST_FILES, {
         read: false
-    })
-        .pipe(mocha())
-        .pipe(mocha({
-            reporter: 'nyan'
-        }));
+    }).pipe(mocha({
+        timeout: 20000,
+        reporter: 'nyan'
+    }));
 });
 
 gulp.task('jshint', function () {

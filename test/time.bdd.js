@@ -22,6 +22,7 @@ describe('Time Service BDD', function () {
         var studentLevel = '1st Year';
         var data = {};
         var visitorData = {};
+        var when  = new Date().getTime();
 
         beforeEach(function () {
             data.personType = personType;
@@ -30,7 +31,7 @@ describe('Time Service BDD', function () {
             data.personId = personId;
             data.department = department;
             data.studentLevel = studentLevel;
-            data.when = 123131242425;
+            data.when = when;
             visitorData.fullname = fullname;
             visitorData.purpose = purpose;
             visitorData.when = data.when;
@@ -49,7 +50,7 @@ describe('Time Service BDD', function () {
                 expect(!!expectedResult).to.equal(true);
             });
 
-            describe('WHEN: updating purpose', function() {
+            describe('WHEN: updating purpose', function () {
                 var updateResult;
                 var updateErr;
                 var newPurpose = 'sleep';
@@ -64,10 +65,10 @@ describe('Time Service BDD', function () {
                 it('THEN: return is true', function () {
                     expect(updateErr).to.be.null;
                     expect(!!updateResult).to.equal(true);
-                }); 
+                });
             });
 
-            describe('WHEN: getting time info', function() {
+            describe('WHEN: getting time info', function () {
                 var updateResult;
                 var updateErr;
                 beforeEach(function (done) {
@@ -82,11 +83,12 @@ describe('Time Service BDD', function () {
                     console.log(updateResult);
                     expect(updateErr).to.be.null;
                     expect(!!updateResult).to.equal(true);
-                });            
+                });
             });
+
         });
 
-        describe('WHEN: visitor checks in', function() {
+        describe('WHEN: visitor checks in', function () {
             var expectedResult;
             beforeEach(function (done) {
                 Time.checkInVisitor(visitorData, function (err, result) {
@@ -115,6 +117,20 @@ describe('Time Service BDD', function () {
             var expectedResult;
             beforeEach(function (done) {
                 Time.getTimeInRecords(data, function (err, result) {
+                    expectedResult = result;
+                    done();
+                });
+            });
+
+            it('THEN: return is true', function () {
+                expect(!!expectedResult).to.equal(true);
+            });
+        });
+
+        describe('WHEN: getting today time-ins', function () {
+            var expectedResult;
+            beforeEach(function (done) {
+                Time.getTodayRecords(new Date().getTime(), function (err, result) {
                     expectedResult = result;
                     done();
                 });
