@@ -11,12 +11,12 @@ function execute(today, callback) {
     }
 }
 function getTodayStartTime(today) {
-    var start = new Date(today);
+    var start = new Date(parseInt(today));
     start.setHours(0, 0, 0, 0);
     return start.getTime();
 }
 function getTodayEndTime(today) {
-    var end = new Date(today);
+    var end = new Date(parseInt(today));
     end.setHours(23, 59, 59, 999);
     return end.getTime();
 }
