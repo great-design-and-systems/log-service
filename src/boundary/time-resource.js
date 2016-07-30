@@ -2,8 +2,8 @@
 var Time = require('./time');
 var API = process.env.API_NAME || '/api/time/';
 
-module.exports = function(app) {
-    app.get('/', function(req, res) {
+module.exports = function (app) {
+    app.get('/', function (req, res) {
         res.status(200).send({
             domain: process.env.DOMAIN_NAME || 'Time',
             links: {
@@ -11,13 +11,14 @@ module.exports = function(app) {
                 getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in',
                 checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/{timeInID}',
                 getTimeInfo: 'http://' + req.headers.host + API + 'get-time-info/{timeInID}',
-                checkInVisitor: 'http://' + req.headers.host + API + 'check-in-visitor/'
+                checkInVisitor: 'http://' + req.headers.host + API + 'check-in-visitor/',
+                getTodayRecords: 'http://' + req.headers.host + API + 'get-today-records/{currentTimeMilis}',
             }
         });
     });
 
-    app.get(API + 'get-time-in/:dateFrom/:dateTo', function(req, res) {
-        Time.getTimeInRecords(req.params, function(err, result) {
+    app.get(API + 'get-time-in/:dateFrom/:dateTo', function (req, res) {
+        Time.getTimeInRecords(req.params, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -29,8 +30,8 @@ module.exports = function(app) {
         });
     });
 
-    app.post(API + 'check-in', function(req, res) {
-        Time.checkIn(req.body, function(err, result) {
+    app.post(API + 'check-in', function (req, res) {
+        Time.checkIn(req.body, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -42,8 +43,8 @@ module.exports = function(app) {
         });
     });
 
-    app.put(API + 'check-in-purpose/:timeInID', function(req, res) {
-        Time.checkInPurpose(req.params.timeInID, req.body.purpose, function(err) {
+    app.put(API + 'check-in-purpose/:timeInID', function (req, res) {
+        Time.checkInPurpose(req.params.timeInID, req.body.purpose, function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -54,8 +55,8 @@ module.exports = function(app) {
         });
     });
 
-    app.get(API + 'get-time-info/:timeInID', function(req, res) {
-        Time.getTimeInfo(req.params.timeInID, function(err, result) {
+    app.get(API + 'get-time-info/:timeInID', function (req, res) {
+        Time.getTimeInfo(req.params.timeInID, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -64,8 +65,18 @@ module.exports = function(app) {
         });
     });
 
-    app.post(API + 'check-in-visitor', function(req, res) {
-        Time.checkInVisitor(req.body, function(err, result) {
+    app.get(API + 'get-today-records/:currentTimeMilis', function (req, res) {
+        Time.getTodayRecords(req.params.currentTimeMilis, function (err, result) {
+            if (err) {
+                res.status(200).send([]);
+            } else {
+                res.status(200).send(result);
+            }
+        });
+    });
+
+    app.post(API + 'check-in-visitor', function (req, res) {
+        Time.checkInVisitor(req.body, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {
