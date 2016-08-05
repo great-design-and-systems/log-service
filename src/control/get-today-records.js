@@ -5,7 +5,7 @@ function execute(start, end, callback) {
     TimeIn.find({
         when: {
             $gte: start,
-            $lt: end
+            $lte: end
         }
     }, function (err, result) {
         console.error(err);

@@ -7,16 +7,15 @@ module.exports = function (app) {
         res.status(200).send({
             domain: process.env.DOMAIN_NAME || 'Time',
             links: {
-                checkIn: 'http://' + req.headers.host + API + 'check-in',
-                getTimeInRecords: 'http://' + req.headers.host + API + 'get-time-in',
-                checkInPurpose: 'http://' + req.headers.host + API + 'check-in-purpose/{timeInID}',
-                getTimeInfo: 'http://' + req.headers.host + API + 'get-time-info/{timeInID}',
-                checkInVisitor: 'http://' + req.headers.host + API + 'check-in-visitor/',
-                getTodayRecords: 'http://' + req.headers.host + API + 'get-today-records/{currentTimeMilis}',
+                checkIn: { method: 'POST', url: 'http://' + req.headers.host + API + 'check-in' },
+                getTimeIn: { method: 'GET', url: 'http://' + req.headers.host + API + 'get-time-in/:dateFrom/:dateTo' },
+                checkInPurpose: { method: 'PUT', url: 'http://' + req.headers.host + API + 'check-in-purpose/:timeInID' },
+                getTimeInfo: { method: 'GET', url: 'http://' + req.headers.host + API + 'get-time-info/:timeInID' },
+                checkInVisitor: { method: 'POST', url: 'http://' + req.headers.host + API + 'check-in-visitor' },
+                getTodayRecords: { method: 'GET', url: 'http://' + req.headers.host + API + 'get-today-records/:currentTimeMilis' }
             }
         });
     });
-
     app.get(API + 'get-time-in/:dateFrom/:dateTo', function (req, res) {
         Time.getTimeInRecords(req.params, function (err, result) {
             if (err) {
@@ -29,7 +28,6 @@ module.exports = function (app) {
             }
         });
     });
-
     app.post(API + 'check-in', function (req, res) {
         Time.checkIn(req.body, function (err, result) {
             if (err) {
@@ -42,7 +40,6 @@ module.exports = function (app) {
             }
         });
     });
-
     app.put(API + 'check-in-purpose/:timeInID', function (req, res) {
         Time.checkInPurpose(req.params.timeInID, req.body.purpose, function (err) {
             if (err) {
@@ -54,7 +51,6 @@ module.exports = function (app) {
             }
         });
     });
-
     app.get(API + 'get-time-info/:timeInID', function (req, res) {
         Time.getTimeInfo(req.params.timeInID, function (err, result) {
             if (err) {
@@ -64,7 +60,6 @@ module.exports = function (app) {
             }
         });
     });
-
     app.get(API + 'get-today-records/:currentTimeMilis', function (req, res) {
         Time.getTodayRecords(req.params.currentTimeMilis, function (err, result) {
             if (err) {
@@ -74,7 +69,6 @@ module.exports = function (app) {
             }
         });
     });
-
     app.post(API + 'check-in-visitor', function (req, res) {
         Time.checkInVisitor(req.body, function (err, result) {
             if (err) {
