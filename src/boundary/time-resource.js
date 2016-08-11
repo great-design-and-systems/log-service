@@ -84,14 +84,13 @@ module.exports = function (app) {
         });
     });
     app.get(API + 'get-count-by-person-type/:dateFrom/:dateTo', function (req, res) {
-    	res.status(200).send({Student: '100', Faculty: '50', Visitor: '20'});
-//        Time.getTimeInCountByPersonType(req.params, req.query, function (err, result) {
-//            if (err) {
-//                res.status(500).send(err);
-//            } else {
-//            	res.status(200).send(result);
-//            }
-//        });
+        Time.getTimeInCountByPersonType(req.params, req.query, function (err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+            	res.status(200).send(result);
+            }
+        });
     });
     app.get(API + 'get-count-by-time/:dateFrom/:dateTo', function (req, res) {
     	res.status(200).send({
