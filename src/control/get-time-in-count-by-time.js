@@ -18,25 +18,31 @@ function execute(dateParam, personTypes, callback) {
 		}
 	}, {
 		$group : {
-			_id : '$personType',
+			_id : {
+				'personType' : '$personType',
+				'hour' : {'$hour' : {$add: [new Date(0), "$when"]}},
+				
+			},
 			total : {
 				$sum : 1
 			}
 		}
+	}, {
+		$sort: { '_id': 1 }
 	}, function(err, res) {
 		if (err) {
 			callback(err);
 		} else {
-			var output = {};
-			for (var i in res) {
-				if (res[i].total) {
-					output[res[i]._id] = res[i].total;
-				}
-			}
-			console.log(output);
-			callback(undefined, output);
+			// var output = {};
+			// for (var i in res) {
+			// output[res[i]._id] = res[i].total;
+			// }
+			// console.log(output);
+			// callback(undefined, output);
+			console.log(res);
+			callback(undefined, true);
 		}
-		
+
 	});
 }
 

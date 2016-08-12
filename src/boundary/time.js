@@ -6,6 +6,7 @@ var TimeInfo = require('../control/get-time-info');
 var GetTodayRange = require('../control/get-today-range');
 var GetTodayRecords = require('../control/get-today-records');
 var GetTimeInCountByPersonType = require('../control/get-time-in-count-by-person-type');
+var GetTimeInCountByTime = require('../control/get-time-in-count-by-time');
 module.exports = {
     getTimeInRecords: function (params, callback) {
         new TimeInRecords(params, callback);
@@ -46,7 +47,7 @@ module.exports = {
     getTimeInCountByPersonType: function (dateParams, queryParam, callback) {
         console.log('dateParams', dateParams);
         console.log('personType', queryParam);
-        var personTypes = new Array();
+        var personTypes = [];
         if (queryParam.personType) {
         	personTypes = queryParam.personType.split(',');
         }
@@ -54,6 +55,22 @@ module.exports = {
         new GetTimeInCountByPersonType(dateParams, personTypes, function (err, result) {
             if (err) {
                 callback({message: 'Failed to get count by person type.'});
+            } else {
+                callback(undefined, result);
+            }
+        });
+    },
+    getTimeInCountByTime: function (dateParams, queryParam, callback) {
+        console.log('dateParams', dateParams);
+        console.log('personType', queryParam);
+        var personTypes = [];
+        if (queryParam.personType) {
+        	personTypes = queryParam.personType.split(',');
+        }
+        console.log('personTypes', personTypes);
+        new GetTimeInCountByTime(dateParams, personTypes, function (err, result) {
+            if (err) {
+                callback({message: 'Failed to get count by time.'});
             } else {
                 callback(undefined, result);
             }
