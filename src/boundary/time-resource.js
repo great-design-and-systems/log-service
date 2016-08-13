@@ -93,17 +93,12 @@ module.exports = function (app) {
         });
     });
     app.get(API + 'get-count-by-time/:dateFrom/:dateTo', function (req, res) {
-    	res.status(200).send({
-    		Student : [100,33,58,43,87,31,22,17,13,9,5],
-    		Faculty : [23,53,67,58,89,22,43,56,12,25,1],
-    		Visitor : [0,0,0,5,3,0,6,10,23,17,11]
-    	});
-//    	Time.getTimeInCountByTime(req.params, req.query, function (err, result) {
-//            if (err) {
-//                res.status(500).send(err);
-//            } else {
-//            	res.status(200).send(result);
-//            }
-//        });
+    	Time.getTimeInCountByTime(req.params, req.query, function (err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+            	res.status(200).send(result);
+            }
+        });
     });
 };

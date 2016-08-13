@@ -20,27 +20,40 @@ function execute(dateParam, personTypes, callback) {
 		$group : {
 			_id : {
 				'personType' : '$personType',
-				'hour' : {'$hour' : {$add: [new Date(0), "$when"]}},
-				
+				'hour' : {
+					'$hour' : {
+						$add : [ new Date(0), "$when" ]
+					}
+				},
+
 			},
 			total : {
 				$sum : 1
 			}
 		}
 	}, {
-		$sort: { '_id': 1 }
+		$sort : {
+			'_id' : 1
+		}
 	}, function(err, res) {
 		if (err) {
 			callback(err);
 		} else {
-			// var output = {};
-			// for (var i in res) {
-			// output[res[i]._id] = res[i].total;
-			// }
-			// console.log(output);
-			// callback(undefined, output);
 			console.log(res);
-			callback(undefined, true);
+			var output = {};
+
+			for ( var i in res) {
+				if (res[i]._id.hour >= 7) {
+					var hours = output[res[i]._id.personType];
+					if (!hours) {
+						hours = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+					}
+					hours[res[i]._id.hour - 7] = res[i].total;
+					output[res[i]._id.personType] = hours;
+				}
+			}
+			console.log(output);
+			callback(undefined, output);
 		}
 
 	});
