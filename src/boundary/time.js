@@ -48,13 +48,14 @@ module.exports = {
         console.log('dateParams', dateParams);
         console.log('personType', queryParam);
         var personTypes = [];
-        if (queryParam.personType) {
-        	personTypes = queryParam.personType.split(',');
+        if (queryParam.personType instanceof Array) {
+            personTypes = queryParam.personType;
+        } else {
+            personTypes.push(queryParam.personType);
         }
-        console.log('personTypes', personTypes);
         new GetTimeInCountByPersonType(dateParams, personTypes, function (err, result) {
             if (err) {
-                callback({message: 'Failed to get count by person type.'});
+                callback({ message: 'Failed to get count by person type.' });
             } else {
                 callback(undefined, result);
             }
@@ -64,13 +65,14 @@ module.exports = {
         console.log('dateParams', dateParams);
         console.log('personType', queryParam);
         var personTypes = [];
-        if (queryParam.personType) {
-        	personTypes = queryParam.personType.split(',');
+        if (queryParam.personType instanceof Array) {
+            personTypes = queryParam.personType;
+        } else {
+            personTypes.push(queryParam.personType);
         }
-        console.log('personTypes', personTypes);
         new GetTimeInCountByTime(dateParams, personTypes, function (err, result) {
             if (err) {
-                callback({message: 'Failed to get count by time.'});
+                callback({ message: 'Failed to get count by time.' });
             } else {
                 callback(undefined, result);
             }
