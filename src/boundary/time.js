@@ -48,10 +48,12 @@ module.exports = {
         console.log('dateParams', dateParams);
         console.log('personType', queryParam);
         var personTypes = [];
-        if (queryParam.personType instanceof Array) {
-            personTypes = queryParam.personType;
-        } else {
-            personTypes.push(queryParam.personType);
+        if (queryParam.personType) {
+            if (queryParam.personType instanceof Array) {
+                personTypes = queryParam.personType;
+            } else {
+                personTypes.push(queryParam.personType);
+            }
         }
         new GetTimeInCountByPersonType(dateParams, personTypes, function (err, result) {
             if (err) {
@@ -65,10 +67,12 @@ module.exports = {
         console.log('dateParams', dateParams);
         console.log('personType', queryParam);
         var personTypes = [];
-        if (queryParam.personType instanceof Array) {
-            personTypes = queryParam.personType;
-        } else {
-            personTypes.push(queryParam.personType);
+        if (queryParam.personType) {
+            if (queryParam.personType instanceof Array) {
+                personTypes = queryParam.personType;
+            } else {
+                personTypes.push(queryParam.personType);
+            }
         }
         new GetTimeInCountByTime(dateParams, personTypes, function (err, result) {
             if (err) {
