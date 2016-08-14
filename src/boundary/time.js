@@ -8,8 +8,16 @@ var GetTodayRecords = require('../control/get-today-records');
 var GetTimeInCountByPersonType = require('../control/get-time-in-count-by-person-type');
 var GetTimeInCountByTime = require('../control/get-time-in-count-by-time');
 module.exports = {
-    getTimeInRecords: function (params, callback) {
-        new TimeInRecords(params, callback);
+    getTimeInRecords: function (params, queryParam, callback) {
+    	var personTypes = [];
+        if (queryParam.personType) {
+            if (queryParam.personType instanceof Array) {
+                personTypes = queryParam.personType;
+            } else {
+                personTypes.push(queryParam.personType);
+            }
+        }
+        new TimeInRecords(params, personTypes, callback);
     },
     checkIn: function (data, callback) {
         new CheckIn(data, callback);

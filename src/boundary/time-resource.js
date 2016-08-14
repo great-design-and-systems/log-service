@@ -19,7 +19,7 @@ module.exports = function (app) {
         });
     });
     app.get(API + 'get-time-in/:dateFrom/:dateTo', function (req, res) {
-        Time.getTimeInRecords(req.params, function (err, result) {
+        Time.getTimeInRecords(req.params, req.query, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {
