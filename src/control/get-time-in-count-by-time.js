@@ -48,7 +48,7 @@ function execute(dateParam, personTypes, callback) {
 					if (!hours) {
 						hours = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 					}
-					hours[res[i]._id.hour - 7] = res[i].total;
+					hours[res[i]._id.hour - 7] = (res[i].total) ? res[i].total : 0;
 					output[res[i]._id.personType] = hours;
 				}
 			}
