@@ -1,5 +1,6 @@
 'use strict';
 var TimeIn = require('../entity/TimeIn');
+var lodash = require('lodash');
 
 function execute(dateParam, personTypes, callback) {
 	var dateFrom = getDateStartTime(dateParam.dateFrom);
@@ -48,10 +49,18 @@ function execute(dateParam, personTypes, callback) {
 					if (!hours) {
 						hours = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 					}
-					hours[res[i]._id.hour - 7] = (res[i].total) ? res[i].total : 0;
+					hours[res[i]._id.hour - 7] = (res[i].total) ? res[i].total
+							: 0;
 					output[res[i]._id.personType] = hours;
 				}
 			}
+
+			lodash.forEach(output, function(value, key) {
+				output[key] = lodash.map(value, function(val) {
+					return (val) ? val : 0;
+				});
+			});
+
 			console.log(output);
 			callback(undefined, output);
 		}
