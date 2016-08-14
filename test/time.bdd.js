@@ -106,6 +106,7 @@ describe('Time Service BDD', function () {
     describe('GIVEN: time-in records are retrieved', function () {
         var dateFrom = '2016-07-22';
         var dateTo = '2016-07-22';
+        var personTypes = ['Student','Faculty','Visitor'];
         var data = {};
 
         beforeEach(function () {
@@ -116,7 +117,7 @@ describe('Time Service BDD', function () {
         describe('WHEN: getting time-ins', function () {
             var expectedResult;
             beforeEach(function (done) {
-                Time.getTimeInRecords(data, function (err, result) {
+                Time.getTimeInRecords(data, personTypes, function (err, result) {
                     expectedResult = result;
                     done();
                 });
