@@ -1,11 +1,12 @@
 'use strict';
 var TimeIn = require('../entity/TimeIn');
+var logger = require('./get-logger');
 
 function execute(timeInID, callback) {
     TimeIn.findById(timeInID, 'fullname studentLevel department studentLevel when',
         function (err, result) {
-            console.error(err);
             if (err) {
+            	logger.error(err);
                 callback(err);
             } else {
                 if (result) {

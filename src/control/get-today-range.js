@@ -1,4 +1,6 @@
 'use strict';
+var logger = require('./get-logger');
+
 function execute(today, callback) {
     try {
         callback(undefined, {
@@ -6,7 +8,7 @@ function execute(today, callback) {
             end: getTodayEndTime(today)
         });
     } catch (err) {
-        console.error(err);
+    	logger.error(err);
         callback(err);
     }
 }

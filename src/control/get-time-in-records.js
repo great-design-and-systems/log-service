@@ -1,5 +1,6 @@
 'use strict';
 var TimeIn = require('../entity/TimeIn');
+var logger = require('./get-logger');
 
 function execute(param, personTypes, callback) {
     TimeIn.find({
@@ -9,7 +10,16 @@ function execute(param, personTypes, callback) {
         }, personType : {
 			$in : personTypes
 		}
-    }, callback);
+    }, function (err, result) {
+        if (err) {
+            logger.error('get-time-in-records', err);
+            callback({
+                message: 'Failed to get time-in records.'
+            });
+        } else {
+            callback(null, result);
+        }
+    });
 }
 
 function getDateStartTime(inputDate) {

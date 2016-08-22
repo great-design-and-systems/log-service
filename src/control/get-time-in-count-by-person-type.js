@@ -1,5 +1,6 @@
 'use strict';
 var TimeIn = require('../entity/TimeIn');
+var logger = require('./get-logger');
 
 function execute(dateParam, personTypes, callback) {
 	var dateFrom = getDateStartTime(dateParam.dateFrom);
@@ -25,6 +26,7 @@ function execute(dateParam, personTypes, callback) {
 		}
 	}, function(err, res) {
 		if (err) {
+			logger.error('get-time-in-count-by-person-type', err);
 			callback(err);
 		} else {
 			var output = {};
