@@ -21,6 +21,7 @@ var TimeInSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'When is required.']
     },
+    imageId: String,
     department: String,
     studentLevel: String,
     createdOn: { type: Date, default: Date.now }
