@@ -3,7 +3,7 @@ var TimeIn = require('../entity/TimeIn');
 var logger = require('./get-logger');
 
 function execute(timeInID, callback) {
-    TimeIn.findById(timeInID, 'fullname studentLevel department studentLevel when',
+    TimeIn.findById(timeInID, 'fullname studentLevel department studentLevel when imageId',
         function (err, result) {
             if (err) {
             	logger.error(err);
